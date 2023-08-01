@@ -728,6 +728,8 @@ $(function(){
             selectTrack(-1);} );
         playNextBtn.on('click',function(){
             selectTrack(1);});
+
+        playPauseBtn.click();
     }
     // 调用初始化函数
     initPlayer();
