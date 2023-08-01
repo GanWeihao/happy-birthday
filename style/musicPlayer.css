@@ -281,8 +281,8 @@
     #player {
         position: absolute;
         top: -100px;
-        left: 10%;
-        width: 350px;
+        left: 6%;
+        width: 200px;
         z-index: 9999;
     }
 }

@@ -1,28 +1,4 @@
 // Import the data to customize and insert them into page
-/*const fetchData = () => {
-  fetch("customize.json")
-    .then(data => data.json())
-    .then(data => {
-      dataArr = Object.keys(data);
-      dataArr.map(customData => {
-        if (data[customData] !== "") {
-          if (customData === "imagePath") {
-            document
-              .querySelector(`[data-node-name*="${customData}"]`)
-              .setAttribute("src", data[customData]);
-          } else {
-            document.querySelector(`[data-node-name*="${customData}"]`).innerText = data[customData];
-          }
-        }
-
-        // Check if the iteration is over
-        // Run amimation if so
-        if ( dataArr.length === dataArr.indexOf(customData) + 1 ) {
-          animationTimeline();
-        } 
-      });
-    });
-};*/
 
 // Animation Timeline
 const animationTimeline = () => {
@@ -283,6 +259,14 @@ const animationTimeline = () => {
       },
       "party"
     )
+    .to(
+      ".last-smile",
+      0.5,
+      {
+          rotation: 90
+      },
+      "+=1"
+    )
     .staggerTo(
       ".eight svg",
       1.5,
@@ -296,7 +280,6 @@ const animationTimeline = () => {
       0.3
     )
     .to(".six", 0.5, {
-      y: 30,
       zIndex: "100"
     })
     /*.staggerFrom(".nine p", 1, ideaTextTrans, 1.2)
@@ -321,9 +304,6 @@ const animationTimeline = () => {
 
 // Run fetch and animation in sequence
 // fetchData();
-animationTimeline();
-
-
 
 $(function(){
     // 烟花特效
@@ -475,7 +455,6 @@ $(function(){
         requestAnimationFrame(loop);
     }
 
-
     var playerContent1 = $('#player-content1');// 歌曲信息模块部分dom元素
     var musicName = $('.music-name');          // 歌曲名部分dom元素
     var artistName = $('.artist-name');        // 歌手名部分dom元素
@@ -500,11 +479,13 @@ $(function(){
     var musicImgsData = ['img/bg.jpg','img/bg1.jpg']    // 图片地址数组
     var musicNameData = ['Happy Birthday To You','唯一'];                   // 歌曲名数组
     var artistNameData = ['Various Artists','告五人']            // 创作歌手数组
-    var musicUrls=['mp3/m1.mp3','mp3/m2.mp3',];// 歌曲mp3数组
+    var musicUrls=['mp3/m1.m4a','mp3/m2.mp3',];// 歌曲mp3数组
     var currIndex = -1;              // 当前播放索引
 
     var buffInterval = null          // 初始化定时器 判断是否需要缓冲
     var len = musicNameData.length;  // 歌曲长度
+
+    var playHtml = false;
 
 
     // 点击 播放/暂停 按钮，触发该函数
@@ -512,18 +493,15 @@ $(function(){
     function playPause(){
 
         if(audio.paused){
-
+            if (!playHtml) {
+                animationTimeline();
+                playHtml = true;
+            }
             playerContent1.addClass('active'); // 内容栏上移
             musicImgs.addClass('active');      // 左侧图片开始动画效果
             playPauseBtn.attr('class','btn play-pause icon-zanting iconfont') // 显示暂停图标
             checkBuffering(); // 检测是否需要缓冲
-            let i = 0;
-            while (i === 0) {
-                if (document.readyState === 'complete') {
-                    i = 1;
-                    audio.play();     // 播放
-                }
-            }
+            audio.play();     // 播放
         }else{
 
             playerContent1.removeClass('active'); // 内容栏下移
@@ -736,7 +714,7 @@ $(function(){
     function initPlayer() {
         audio = new Audio();  // 创建Audio对象
         selectTrack(0);       // 初始化第一首歌曲的相关信息
-        audio.loop = true;   // 取消歌曲的循环播放功能
+        audio.loop = false;   // 取消歌曲的循环播放功能
         playPauseBtn.on('click',playPause); // 点击播放/暂停 按钮，触发playPause函数
         // 进度条 移入/移出/点击 动作触发相应函数
         sArea.mousemove(function(event){
@@ -756,26 +734,6 @@ $(function(){
 
 
     window.onload = function () {
-        /*playPauseBtn.click();*/
-
-        /*var playlist = ["http://ryp8ei8p9.bkt.clouddn.com/m1.mp3", "http://ryp8ei8p9.bkt.clouddn.com/m2.mp3"];
-        var currentSong = 0;
-        var audioPlayer = document.getElementById("myAudio");
-        audioPlayer.muted = false;
-        audioPlayer.autoplay = true;
-        audioPlayer.play();
-        function playNext() {
-            if (currentSong < playlist.length - 1) {
-                currentSong++;
-            } else {
-                currentSong = 0;
-            }
-            audioPlayer.src = playlist[currentSong];
-            audioPlayer.play();
-        }
-        audioPlayer.addEventListener("ended", playNext);*/
-
-
         canvas.addEventListener('mousemove', function (e) {
             mx = e.pageX - canvas.offsetLeft;
             my = e.pageY - canvas.offsetTop;
@@ -790,4 +748,20 @@ $(function(){
         });
         loop();
     };
+
+
+    function countDown(endTime, id) {
+        var endDate = new Date(endTime); //将结束时间转换为日期对象
+        var now = new Date(); //获取当前时间
+        var leftTime = endDate.getTime() - now.getTime(); //计算剩余时间（单位：毫秒）
+        var days = Math.floor(leftTime / (1000 * 60 * 60 * 24)); //计算剩余天数
+        var hours = Math.floor(leftTime / (1000 * 60 * 60) % 24); //计算剩余小时数
+        var minutes = Math.floor(leftTime / (1000 * 60) % 60); //计算剩余分钟数
+        var seconds = Math.floor(leftTime / 1000 % 60); //计算剩余秒数
+        var str = "距离宝宝生日还有：" + days + "天" + hours + "小时" + minutes + "分钟" + seconds + "秒"; //将剩余时间格式化为字符串
+        document.getElementById(id).innerHTML = str; //将字符串显示在HTML中
+        setTimeout(function () { countDown(endTime, id) }, 1000); //每隔一秒钟执行一次countDown函数
+    }
+
+    countDown('2023/8/2 00:00:00', 'countdown')
 });
