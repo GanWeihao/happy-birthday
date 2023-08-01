@@ -92,7 +92,22 @@ body {
   right: 0;
 }
 
+.idea-1 strong {
+  padding: 3px 5px;
+  border-radius: 3px;
+  display: inline-block;
+}
+.idea-2 strong {
+  padding: 3px 5px;
+  border-radius: 3px;
+  display: inline-block;
+}
 .idea-3 strong {
+  padding: 3px 5px;
+  border-radius: 3px;
+  display: inline-block;
+}
+.idea-4 strong {
   padding: 3px 5px;
   border-radius: 3px;
   display: inline-block;
@@ -118,14 +133,14 @@ body {
 
 .six img {
   display: inline-block;
-  max-width: 100%;
+  max-width: 50%;
   height: auto;
 }
 
 .six .hat {
   position: absolute;
-  width: 80px;
-  top: -35px;
+  width: 140px;
+  top: -20px;
   left: 41.5%;
   /* transform: scale(0.1); */
 }
@@ -235,7 +250,7 @@ body {
 /* Media Queries */
 @media screen and (max-height: 1000px) {
   .six .hat {
-    left: 40%;
+    left: 34%;
   }
 }
 
@@ -279,9 +294,14 @@ body {
     font-size: 10rem;
   }
 
+  .six img {
+    max-width: 100%;
+  }
+
   .six .hat {
-    width: 50px;
-    top: -20px;
+    width: 100px;
+    top: -5px;
+    left: 20%;
   }
 
   .wish-hbd {
@@ -290,6 +310,12 @@ body {
 
   .wish h5 {
     font-size: 1.4rem;
+  }
+
+  .baloons img {
+    display: inline-block;
+    position: absolute;
+    width: 70%;
   }
 
   .nine p {

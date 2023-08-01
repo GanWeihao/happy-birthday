@@ -5,39 +5,107 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Happy Birthday!!! :)</title>
+  <title>杨艺莉 生日快乐 :)</title>
   <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400" rel="stylesheet">
   <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
   <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="font/iconfont.css">
+  <link rel="stylesheet" href="style/musicPlayer.css">
+
+  <style>
+    #fireworks {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+  </style>
+
+<!--  <audio src="mp3/m1.mp3" id="myAudio" autoplay="autoplay" controls="controls" loop="loop"></audio>-->
+  <audio id="myAudio" muted playsinline>
+    <source src="http://ryp8ei8p9.bkt.clouddn.com/m1.mp3" type="audio/mpeg">
+  </audio>
 </head>
 
 <body>
+  <canvas id="fireworks"></canvas>
+
+  <div class="container1">
+    <div id="player">
+      <!-- 歌曲信息模块 -->
+      <div id="player-content1">
+        <!-- 歌曲名 -->
+        <div class="music-name"></div>
+        <!-- 歌手名 -->
+        <div class="artist-name"></div>
+        <!-- 歌曲时间 -->
+        <div class="time">
+          <!-- 当前播放的时间 -->
+          <div class="current-time"></div>
+          <!-- 歌曲总时长 -->
+          <div class="total-time"></div>
+        </div>
+        <!-- 进度条 -->
+        <div id="s-area">
+          <!-- 鼠标移动到进度条上，显示的时间信息 -->
+          <div id="ins-time"></div>
+          <!-- 鼠标移动到进度条上，进度条变暗部分-->
+          <div id="s-hover"></div>
+          <!-- 表示当前歌曲播放进度的蓝色进度条 -->
+          <div id="seek-bar"></div>
+        </div>
+      </div>
+
+      <!-- 控制模块 -->
+      <div id="player-content2">
+        <!-- 左侧歌曲封面旋转模块 -->
+        <div class="music-imgs">
+          <!-- 封面图 -->
+          <div class="img"></div>
+          <!-- 歌曲缓冲时的提示文字 -->
+          <div id="buffer-box">缓冲…</div>
+        </div>
+        <!-- 右侧歌曲操作模块 -->
+        <div class="player-controls">
+          <!-- 上一首按钮 -->
+          <div class="btn prev iconfont">&#xe603;</div>
+          <!-- 暂停/播放 按钮 -->
+          <div class="btn play-pause icon-jiediankaishi iconfont"></div>
+          <!-- 下一首按钮 -->
+          <div class="btn next iconfont">&#xe602;</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="container">
     <div class="one">
       <h1 class="one">
         <span data-node-name="greeting">Hey</span>
-        <span data-node-name="name">Lydia</span>
+        <span data-node-name="name">宝宝</span>
       </h1>
-      <p class="two" data-node-name="greetingText">I really like your name btw!</p>
+      <p class="two" data-node-name="greetingText">我真的很爱你!!!</p>
     </div>
     <div class="three">
-      <p data-node-name="text1">It's your birthday!!! :D</p>
+      <p data-node-name="text1">今天是你的生日~~~ :D</p>
     </div>
     <div class="four">
       <div class="text-box">
-        <p class="hbd-chatbox" data-node-name="textInChatBox">Happy birthday to you!! Yeee! Many many happy blah...</p>
-        <p class="fake-btn" data-node-name="sendButtonLabel">Send</p>
+        <p class="hbd-chatbox" data-node-name="textInChatBox">祝宝宝心想事成，幸福快乐~宝宝生日快乐~</p>
+        <p class="fake-btn" data-node-name="sendButtonLabel">发送</p>
       </div>
     </div>
     <div class="five">
-      <p class="idea-1" data-node-name="text2">That's what I was going to do.</p>
-      <p class="idea-2" data-node-name="text3">But then I stopped.</p>
-      <p class="idea-3">
-        <span data-node-name="text4">I realised, I wanted to do something</span>
-        <strong data-node-name="text4Adjective">special</strong>.</p>
-      <p class="idea-4" data-node-name="text5Entry">Because,</p>
+      <p class="idea-1" data-node-name="text2">生命中有<strong>你</strong>，感觉精彩~</p>
+      <p class="idea-2" data-node-name="text3">回忆中有<strong>你</strong>，感觉温馨~</p>
+      <p class="idea-3" data-node-name="text4">旅途中有<strong>你</strong>，感觉温暖~</p>
+      <p class="idea-4" data-node-name="text5">身边有<strong>你</strong>，我不再孤单~</p>
+      <!--<p class="idea-5">
+        <span data-node-name="text5">I realised, I wanted to do something</span>
+        <strong data-node-name="text5Adjective">special</strong>
+      </p>-->
       <p class="idea-5">
-        <span data-node-name="text5Content">You are Special</span>
+        <span data-node-name="text6Content">生日快乐!!!</span>
         <span class="smiley" data-node-name="smiley">:)</span>
       </p>
       <p class="idea-6">
@@ -46,16 +114,16 @@
       </p>
     </div>
     <div class="six">
-      <img src="img/lydia2.png" alt="" class="lydia-dp" data-node-name="imagePath">
+      <!--      <img src="img/lydia2.png" alt="" class="lydia-dp" data-node-name="imagePath">-->
+      <img src="img/baby.jpg" alt="" class="lydia-dp" data-node-name="imagePath">
       <img src="img/hat.svg" alt="" class="hat">
       <div class="wish">
-        <h3 class="wish-hbd" data-node-name="wishHeading">Happy Birthday!</h3>
-        <h5 data-node-name="wishText">May the js.prototypes always be with you! ;)</h5>
+        <h3 class="wish-hbd" data-node-name="wishHeading">生日快乐!</h3>
+        <h5 data-node-name="wishText">愿快乐与你常在 ;)</h5>
       </div>
     </div>
     <div class="seven">
       <div class="baloons">
-        <img src="img/ballon2.svg" alt="">
         <img src="img/ballon1.svg" alt="">
         <img src="img/ballon3.svg" alt="">
         <img src="img/ballon1.svg" alt="">
@@ -119,15 +187,14 @@
         <circle cx="20" cy="20" r="20" />
       </svg>
     </div>
-    <div class="nine">
+    <!--<div class="nine">
       <p data-node-name="outroText">Okay, now come back and tell me if you liked it.</p>
       <p id="replay" data-node-name="replayText">Or click, if you want to watch it again.</p>
       <p class="last-smile" data-node-name="outroSmiley">:)</p>
-    </div>
+    </div>-->
   </div>
 </body>
-
+<script src="script/jquery-3.4.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
 <script type="application/javascript" src="script/main.js"></script>
-
 </html>
