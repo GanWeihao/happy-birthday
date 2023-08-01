@@ -760,6 +760,10 @@ $(function(){
         var endDate = new Date(endTime); //将结束时间转换为日期对象
         var now = new Date(); //获取当前时间
         var leftTime = endDate.getTime() - now.getTime(); //计算剩余时间（单位：毫秒）
+        if (leftTime <= 0) {
+            $('.wish-djs').hide();
+            return;
+        }
         var days = Math.floor(leftTime / (1000 * 60 * 60 * 24)); //计算剩余天数
         var hours = Math.floor(leftTime / (1000 * 60 * 60) % 24); //计算剩余小时数
         var minutes = Math.floor(leftTime / (1000 * 60) % 60); //计算剩余分钟数
