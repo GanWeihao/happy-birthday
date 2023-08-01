@@ -493,15 +493,19 @@ $(function(){
     function playPause(){
 
         if(audio.paused){
-            if (!playHtml) {
-                animationTimeline();
-                playHtml = true;
-            }
             playerContent1.addClass('active'); // 内容栏上移
             musicImgs.addClass('active');      // 左侧图片开始动画效果
             playPauseBtn.attr('class','btn play-pause icon-zanting iconfont') // 显示暂停图标
             checkBuffering(); // 检测是否需要缓冲
             audio.play();     // 播放
+
+            if (!playHtml) {
+                animationTimeline();
+                playHtml = true;
+            }
+            if ($(window).height() < 900) {
+                $('.container1').hide();
+            }
         }else{
 
             playerContent1.removeClass('active'); // 内容栏下移
@@ -729,7 +733,7 @@ $(function(){
         playNextBtn.on('click',function(){
             selectTrack(1);});
 
-        playPauseBtn.click();
+        // playPauseBtn.click();
     }
     // 调用初始化函数
     initPlayer();
