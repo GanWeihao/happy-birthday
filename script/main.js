@@ -500,7 +500,7 @@ $(function(){
     var musicImgsData = ['img/bg.jpg','img/bg1.jpg']    // 图片地址数组
     var musicNameData = ['Happy Birthday To You','唯一'];                   // 歌曲名数组
     var artistNameData = ['Various Artists','告五人']            // 创作歌手数组
-    var musicUrls=['http://ryp8ei8p9.bkt.clouddn.com/m1.mp3', 'http://ryp8ei8p9.bkt.clouddn.com/m2.mp3',];// 歌曲mp3数组
+    var musicUrls=['mp3/m1.mp3','mp3/m2.mp3',];// 歌曲mp3数组
     var currIndex = -1;              // 当前播放索引
 
     var buffInterval = null          // 初始化定时器 判断是否需要缓冲
